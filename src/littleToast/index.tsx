@@ -1,9 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledMyComponent = styled.div<{ color?: string }>`
-  color: ${p => p.color || 'green'};
-`;
 
 interface MyComponentProps {
   text: string;
@@ -11,7 +6,7 @@ interface MyComponentProps {
 }
 
 const MyComponent: React.FC<MyComponentProps> = ({ text, color }) => (
-  <StyledMyComponent color={color}>{text}</StyledMyComponent>
+  <h1>{text}</h1>
 );
 
 export { MyComponentProps, MyComponent };
