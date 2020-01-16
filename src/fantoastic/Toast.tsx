@@ -35,7 +35,7 @@ const Timer = function (this: any, callback: any, delay: any) {
 
 // TODO: Introduce prop-types and add types and default values
 function Toast(this: any, props: ToastProps) {
-  const { children, variant, duration, remove } = props;
+  const { children, variant = 'default', duration, remove } = props;
 
   const [show, setShow] = useState(true);
   const [isPaused, setIsPaused] = useState(false);

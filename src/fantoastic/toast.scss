@@ -51,8 +51,8 @@
   overflow: hidden;
   margin-top: 8px;
   width: 280px;
-  height: 48px;
-  padding: 16px 24px 16px 16px;
+  height: 50px;
+  padding: 16px 16px 16px 16px;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -68,6 +68,7 @@
 /* VARIANTS */
 .LittleToast-variant--default {
   background: white;
+  color: #444;
 }
 .LittleToast-variant--primary {
   background: blueviolet;
@@ -84,12 +85,10 @@
 /* Animations */
 .LittleToast--visible {
   animation: fadeIn 500ms forwards;
-  color: white;
 }
 
 .LittleToast--hidden {
   animation: fadeOut 500ms forwards;
-  color: white;
 }
 
 @keyframes fadeIn {

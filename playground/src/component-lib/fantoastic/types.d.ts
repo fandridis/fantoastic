@@ -1,13 +1,13 @@
-export interface IToast {
-    textContent: string;
-    id: string;
-    position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'top' | 'bottom';
-    variant: string;
-    duration: number;
+export declare const TOAST_POSITIONS: readonly ["topLeft", "topRight", "bottomLeft", "bottomRight", "top", "bottom"];
+export declare type ToastPositions = typeof TOAST_POSITIONS[number];
+export interface ToastOptions {
+    position?: ToastPositions;
+    variant?: string;
+    duration?: number;
+    persist?: boolean;
 }
-export interface IToastOptions {
+export interface Toast {
     id: string;
-    position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'top' | 'bottom';
-    variant: string;
-    duration: number;
+    textContent: string;
+    options: ToastOptions;
 }

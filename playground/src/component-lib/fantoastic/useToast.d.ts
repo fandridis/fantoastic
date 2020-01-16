@@ -1,9 +1,5 @@
 declare function useToast(): {
-    add: (textContent: string, options: {
-        position?: string;
-        variant?: string;
-        duration?: number;
-    }) => void;
-    remove: (id: string, position: string) => void;
+    add: (textContent: string, options?: import("./types").ToastOptions) => any;
+    remove: (id: string) => any;
 };
 export default useToast;

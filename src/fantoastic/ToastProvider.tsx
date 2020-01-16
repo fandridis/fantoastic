@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { getUuid } from "./helpers";
 import ToastContext from "./context";
-import Toast from "./Toast";
-import { IToast } from './types';
+import ToastComponent from "./Toast";
+import { Toast, ToastOptions, TOAST_POSITIONS } from './types';
 import "./toast.scss";
 
-interface IToastState {
-  topLeft: IToast[],
-  topRight: IToast[],
-  bottomLeft: IToast[],
-  bottomRight: IToast[],
-  top: IToast[],
-  bottom: IToast[]
+interface ToastState {
+  topLeft: Toast[],
+  topRight: Toast[],
+  bottomLeft: Toast[],
+  bottomRight: Toast[],
+  top: Toast[],
+  bottom: Toast[]
 }
 
 const ToastContainer = (props: any) => (
@@ -29,7 +29,7 @@ const ToastContainer = (props: any) => (
 
 function withToastProvider(Component: any) {
   function WithToastProvider(props: any) {
-    const [toasts, setToasts] = useState<any>({
+    const [toasts, setToasts] = useState<ToastState>({
       topLeft: [],
       topRight: [],
       bottomLeft: [],
@@ -38,17 +38,27 @@ function withToastProvider(Component: any) {
       bottom: [],
     })
 
-    useEffect(() => {
-      console.log("toasts: ", toasts);
-    }, [toasts]);
+    const getDuration = (options: ToastOptions) => {
+      if (options.persist) {
+        return 0;
+      }
 
-    const add = (textContent: string, options: { position?: string, variant?: string, duration?: number }) => { // TODO: options elsewhere
+      return options.duration ? options.duration : 6000; // TODO: Add default duration as a constant somewhere
+    }
+
+    const add = (textContent: string, options: ToastOptions = {}) => {
 
       console.log(' add @ withToastProvider: ', textContent);
-      const id = getUuid();
 
-      const position = options.position ? options.position : "topRight";
-      const newToast = { id, textContent, position, ...options };
+      const position = options.position ? options.position : 'topRight';
+      const duration = getDuration(options);
+      const id = position + ':' + getUuid();
+
+      const newToast: Toast = {
+        id,
+        textContent,
+        options: { duration, ...options }
+      }
 
       console.log('newToast: ', newToast);
 
@@ -58,8 +68,11 @@ function withToastProvider(Component: any) {
       });
     };
 
-    const remove = (id: string, position: string) => {
-      const newToasts = toasts[position].filter((t: IToast) => t.id !== id);
+    const remove = (id: string) => {
+      console.log('Removing: ', id);
+      const position = id.split(':')[0];
+
+      const newToasts = toasts[position].filter((t: Toast) => t.id !== id);
 
       setToasts({ ...toasts, [position]: newToasts });
     };
@@ -67,38 +80,27 @@ function withToastProvider(Component: any) {
     return (
       <ToastContext.Provider value={{ add, remove }}>
         <Component {...props} />
-
         {createPortal(
           <>
-            <ToastContainer position="topRight">
-              {toasts.topRight.map((t: IToast) => (
-                <Toast
-                  key={t.id}
-                  variant={t.variant}
-                  duration={t.duration}
-                  remove={() => remove(t.id, 'topRight')}
-                >
-                  {t.textContent + ": " + t.id}
-                </Toast>
-              ))}
-            </ToastContainer>
-
-            <ToastContainer position="topLeft">
-              {toasts.topLeft.map((t: IToast) => (
-                <Toast
-                  key={t.id}
-                  variant={t.variant}
-                  duration={t.duration}
-                  remove={() => remove(t.id, 'topLeft')}
-                >
-                  {t.textContent + ": " + t.id}
-                </Toast>
-              ))}
-            </ToastContainer>
+            {TOAST_POSITIONS.map(position =>
+              <ToastContainer key={position} position={position}>
+                {toasts[position].map((t: Toast) => (
+                  <ToastComponent
+                    key={t.id}
+                    variant={t.options.variant}
+                    duration={t.options.duration}
+                    remove={() => remove(t.id)}
+                  >
+                    {t.textContent + ": " + t.id}
+                  </ToastComponent>
+                ))}
+              </ToastContainer>
+            )}
           </>,
           document.body
-        )}
-      </ToastContext.Provider>
+        )
+        }
+      </ToastContext.Provider >
     );
   }
 
