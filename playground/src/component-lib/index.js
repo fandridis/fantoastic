@@ -26,7 +26,6 @@ var TestComponent = function (_a) {
         React.createElement("h1", { className: "heading" }, "I'm the test component"),
         React.createElement("h2", null, "Made with love by Harvey")));
 };
-//# sourceMappingURL=test-component.js.map
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -125,13 +124,11 @@ function getUuid() {
     }
     return uuid(null, null);
 }
-//# sourceMappingURL=helpers.js.map
 
 var ToastContext = React.createContext({
     add: function (textContent, options) { return null; },
     remove: function (id) { return null; }
 });
-//# sourceMappingURL=context.js.map
 
 var Timer = function (callback, delay) {
     var timerId;
@@ -195,10 +192,8 @@ function Toast(props) {
     return (React.createElement("div", { className: wrapperClasses, onClick: setToRemove, onAnimationEnd: onAnimationEnd, onMouseOver: onMouseOver, onMouseLeave: onMouseLeave },
         React.createElement("div", { className: "LittleToast__text" }, children)));
 }
-//# sourceMappingURL=Toast.js.map
 
 var TOAST_POSITIONS = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'top', 'bottom'];
-//# sourceMappingURL=types.js.map
 
 ___$insertStyle(".LittleToast-container {\n  position: fixed;\n  z-index: 9999;\n}\n\n.LittleToast-container--topRight {\n  top: 8px;\n  right: 8px;\n}\n\n.LittleToast-container--topLeft {\n  top: 8px;\n  left: 8px;\n}\n\n.LittleToast-container--bottomRight {\n  bottom: 8px;\n  right: 8px;\n}\n\n.LittleToast-container--bottomLeft {\n  bottom: 8px;\n  left: 8px;\n}\n\n.LittleToast-container--top {\n  top: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n.LittleToast-container--bottom {\n  bottom: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n/* THE ACTUAL TOAST */\n.LittleToast {\n  position: relative;\n  overflow: hidden;\n  margin-top: 8px;\n  width: 280px;\n  height: 50px;\n  padding: 16px 16px 16px 16px;\n  border-radius: 4px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);\n  cursor: pointer;\n}\n\n.LittleToast__close-button {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  color: white;\n}\n\n/* VARIANTS */\n.LittleToast-variant--default {\n  background: white;\n  color: #444;\n}\n\n.LittleToast-variant--primary {\n  background: blueviolet;\n  color: white;\n}\n\n.LittleToast-variant--danger {\n  background: indianred;\n  color: white;\n}\n\n.LittleToast-variant--success {\n  background: greenyellow;\n}\n\n/* Animations */\n.LittleToast--visible {\n  animation: fadeIn 500ms forwards;\n}\n\n.LittleToast--hidden {\n  animation: fadeOut 500ms forwards;\n}\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadeOut {\n  0% {\n    opacity: 1;\n  }\n  80% {\n    opacity: 0.5;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n  90% {\n    opacity: 0.1;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n  100% {\n    opacity: 0;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n}");
 
@@ -254,6 +249,5 @@ function useToast() {
     var context = useContext(ToastContext);
     return { add: context.add, remove: context.remove };
 }
-//# sourceMappingURL=useToast.js.map
 
 export { TestComponent, useToast, withToastProvider };
