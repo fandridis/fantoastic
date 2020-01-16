@@ -1,0 +1,132 @@
+.LittleToast-container {
+    position: fixed;
+    z-index: 9999;
+}
+  
+.LittleToast-container--topRight {
+  top: 8px;
+  right: 8px;
+}
+
+.LittleToast-container--topLeft {
+  top: 8px;
+  left: 8px;
+}
+
+.LittleToast-container--bottomRight {
+  bottom: 8px;
+  right: 8px;
+}
+
+.LittleToast-container--bottomLeft {
+  bottom: 8px;
+  left: 8px;
+}
+
+.LittleToast-container--top {
+  top: 8px;
+  left: 50%;
+  width: auto;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.LittleToast-container--bottom {
+  bottom: 8px;
+  left: 50%;
+  width: auto;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+/* THE ACTUAL TOAST */
+.LittleToast {
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+  width: 280px;
+  height: 48px;
+  padding: 16px 24px 16px 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.LittleToast__close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: white;
+}
+
+/* VARIANTS */
+.LittleToast-variant--default {
+  background: white;
+}
+.LittleToast-variant--primary {
+  background: blueviolet;
+  color: white;
+}
+.LittleToast-variant--danger {
+  background: indianred;
+  color: white;
+}
+.LittleToast-variant--success {
+  background: greenyellow;
+}
+
+/* Animations */
+.LittleToast--visible {
+  animation: fadeIn 500ms forwards;
+  color: white;
+}
+
+.LittleToast--hidden {
+  animation: fadeOut 500ms forwards;
+  color: white;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.5;
+    height: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  90% {
+    opacity: 0.1;
+    height: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  100% {
+    opacity: 0;
+    height: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+  }
+}

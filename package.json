@@ -1,35 +1,68 @@
 {
   "name": "fantoastic",
   "version": "1.0.2",
-  "description": "",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "build/index.es.js",
+  "files": [
+    "build"
+  ],
+  "description": "A fantastic library for all your toast needs.",
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
-    "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
+    "start-playground": "cd playground && npm run start",
     "dev": "npm-run-all --parallel build-watch start-playground",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch",
+    "test:once": "jest"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fandridis/fantoastic.git"
+  },
+  "keywords": [
+    "React",
+    "Component",
+    "Library",
+    "Rollup",
+    "Typescript",
+    "Toasts",
+    "Notifications"
+  ],
   "author": "Georgios Fandridis",
   "license": "ISC",
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@types/classnames": "^2.2.9",
+    "@types/enzyme": "^3.10.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.24",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "babel-loader": "^8.0.6",
+    "classnames": "^2.2.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "npm-run-all": "^4.1.5",
-    "rollup": "^1.29.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.27.4",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-delete": "^1.1.0",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^3.7.4"
-  },
-  "peerDependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
-  },
-  "files": [
-    "dist"
-  ],
-  "typings": "dist/index.d.ts"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "sass-loader": "^8.0.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.2"
+  }
 }
