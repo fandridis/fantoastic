@@ -39,7 +39,11 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+<<<<<<< Updated upstream
         <h1>This is Fantoastic!</h1>
+=======
+        <h1>Hello from Fantoastic.</h1>
+>>>>>>> Stashed changes
         <button onClick={handleCreateToast1}>Default toast</button>
         <button onClick={handleCreateToast2}>Primary toast top-left</button>
         <button onClick={handleCreateToast3}>Danger toast top</button>
