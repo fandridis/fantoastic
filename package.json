@@ -45,7 +45,6 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "babel-loader": "^8.0.6",
-    "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.3",
@@ -64,5 +63,8 @@
     "sass-loader": "^8.0.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
   }
 }

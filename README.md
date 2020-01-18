@@ -2,13 +2,89 @@
 
 A fantastic library for all your toast needs.
 
-## Getting Started
+## Getting started
+
+### 1. Install the library
+``` javascript
+npm install fantoastic --save
+```
+
+<br />
+
+### 2. Import the ToastProvider at the root of your React application (ex. App.jsx) and wrap your application
+``` javascript
+import { withToastProvider } from 'fantoastic';
+
+const App = () => {
+  ...
+  ...
+  ...
+}
+
+const AppWithToastProvider = withToastProvider(App);
+export default AppWithToastProvider;
+```
+
+<br />
+
+### 3. You can now use the toast hook anywhere in the app where a toast is needed.
+``` javascript
+import { useToast } from 'fantoastic';
+
+const SomeComponent = () => {
+  const toast = useToast();
+
+  const handleCreateToast = () => {
+    toast.add('The simplest of the toasts.');
+  };
+
+return (
+  <>
+    <button onClick={handleCreateToast}>Click me!</button>
+  </>
+)
+```
+
+  position?: ToastPositions,
+  variant?: string,
+  duration?: number,
+  persist?: boolean,
+  withCloseIcon?: boolean
+
+## Extra configuration
+
+The toast can be called with a variety of options: **toast.add(content, options)**
+
+```javascript
+  toast.add('I am a fantastic toast', {
+    position: 'topRight',
+    variant: 'default',
+    duration: '5000',
+    persist: false,
+    withCloseIvon: false,
+  })
+```
+
+The complete list of confirations:
+
+| Option | Type | Default Value | Description |
+| ----------- | ----------- |  ----------- | ----------- |
+| position | String between: 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'top', 'bottom' |  'topRight' | Sets location on the screen where the toast will be rendered |
+| variant | String between: 'default', 'primary', 'success', 'danger' |  'default' | Sets the variant (color) of the toast |
+| duration | Number (in milliseconds) |  5000 | Sets the duration until the toast will be automatically closed |
+| persist | Boolean |  false | Makes the toast to stay visible until it's manually closed |
+| withCloseIcon | Boolean | false | Renders the toast with an close icon (X) on the top left corner |
+
+
+
+## Development
 
 Download the repo and in the root run ```npm run i-all``` to install all dependancies.
 
-### Prerequisites
+### Peer-dependancies
 
-Node 10.x.x
+React >= 16.12.0
+ReacDOM >= 16.12.0
 
 ### Installing
 
