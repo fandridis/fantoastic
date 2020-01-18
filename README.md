@@ -4,7 +4,7 @@ A fantastic library for all your toast needs.
 
 ## Getting started
 
-### 1. Install the library (React >= 16.8.0 is needed)
+### 1. Install the library (React >= 16.8.0 is required)
 ``` javascript
 npm install fantoastic --save
 ```
@@ -44,12 +44,6 @@ return (
   </>
 )
 ```
-
-  position?: ToastPositions,
-  variant?: string,
-  duration?: number,
-  persist?: boolean,
-  withCloseIcon?: boolean
 
 ## Extra configuration
 
