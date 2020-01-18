@@ -4,7 +4,7 @@ A fantastic library for all your toast needs.
 
 ## Getting started
 
-### 1. Install the library
+### 1. Install the library (React >= 16.8.0 is needed)
 ``` javascript
 npm install fantoastic --save
 ```
@@ -61,7 +61,7 @@ The toast can be called with a variety of options: **toast.add(content, options)
     variant: 'default',
     duration: '5000',
     persist: false,
-    withCloseIvon: false,
+    withCloseIcon: false,
   })
 ```
 
@@ -76,15 +76,11 @@ The complete list of confirations:
 | withCloseIcon | Boolean | false | Renders the toast with an close icon (X) on the top left corner |
 
 
+<br />
 
 ## Development
 
 Download the repo and in the root run ```npm run i-all``` to install all dependancies.
-
-### Peer-dependancies
-
-React >= 16.12.0
-ReacDOM >= 16.12.0
 
 ### Installing
 
