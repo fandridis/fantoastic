@@ -26,6 +26,7 @@ var TestComponent = function (_a) {
         React.createElement("h1", { className: "heading" }, "I'm the test component"),
         React.createElement("h2", null, "Made with love by Harvey")));
 };
+//# sourceMappingURL=test-component.js.map
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -124,11 +125,13 @@ function getUuid() {
     }
     return uuid(null, null);
 }
+//# sourceMappingURL=helpers.js.map
 
 var ToastContext = React.createContext({
-    add: function (textContent, options) { return null; },
+    add: function (content, options) { return null; },
     remove: function (id) { return null; }
 });
+//# sourceMappingURL=context.js.map
 
 var Timer = function (callback, delay) {
     var timerId;
@@ -145,12 +148,11 @@ var Timer = function (callback, delay) {
     };
     this.resume();
 };
-// TODO: Introduce prop-types and add types and default values
 function Toast(props) {
-    var children = props.children, _a = props.variant, variant = _a === void 0 ? 'default' : _a, duration = props.duration, remove = props.remove;
-    var _b = useState(true), show = _b[0], setShow = _b[1];
-    var _c = useState(false), isPaused = _c[0], setIsPaused = _c[1];
-    var _d = useState(), timer = _d[0], setTimer = _d[1];
+    var children = props.children, variant = props.variant, duration = props.duration, withCloseIcon = props.withCloseIcon, remove = props.remove;
+    var _a = useState(true), show = _a[0], setShow = _a[1];
+    var _b = useState(false), isPaused = _b[0], setIsPaused = _b[1];
+    var _c = useState(), timer = _c[0], setTimer = _c[1];
     var removeRef = useRef(null);
     removeRef.current = remove;
     useEffect(function () {
@@ -166,11 +168,6 @@ function Toast(props) {
     var setToRemove = function () {
         setShow(false);
     };
-    var onAnimationEnd = function () {
-        if (!show) {
-            removeRef.current();
-        }
-    };
     var onMouseOver = function () {
         if (isPaused || !timer) {
             return;
@@ -185,19 +182,36 @@ function Toast(props) {
         timer.resume();
         setIsPaused(false);
     };
-    var wrapperClasses = classnames("\n    LittleToast\n    LittleToast-variant--" + variant + "\n  ", {
-        "LittleToast--visible": show,
-        "LittleToast--hidden": !show
+    var onAnimationEnd = function () {
+        if (!show) {
+            removeRef.current();
+        }
+    };
+    var wrapperClasses = classnames("\n    Fantoastic\n    Fantoastic-variant--" + variant + "\n  ", {
+        "Fantoastic--visible": show,
+        "Fantoastic--hidden": !show
     });
-    return (React.createElement("div", { className: wrapperClasses, onClick: setToRemove, onAnimationEnd: onAnimationEnd, onMouseOver: onMouseOver, onMouseLeave: onMouseLeave },
-        React.createElement("div", { className: "LittleToast__text" }, children)));
+    return (React.createElement("div", { className: wrapperClasses, onAnimationEnd: onAnimationEnd, onMouseOver: onMouseOver, onMouseLeave: onMouseLeave },
+        React.createElement("div", { className: "Fantoastic-body" },
+            React.createElement("div", { className: "Fantoastic__content-wrapper" },
+                React.createElement("div", { className: "Fantoastic__content" }, children)),
+            withCloseIcon &&
+                React.createElement("div", { className: "Fantoastic__closeIcon-wrapper", onClick: setToRemove },
+                    React.createElement("div", { className: "Fantoastic__closeIcon Fantoastic__closeIcon--rounded" })))));
 }
+//# sourceMappingURL=Toast.js.map
 
 var TOAST_POSITIONS = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'top', 'bottom'];
+//# sourceMappingURL=types.js.map
 
-___$insertStyle(".LittleToast-container {\n  position: fixed;\n  z-index: 9999;\n}\n\n.LittleToast-container--topRight {\n  top: 8px;\n  right: 8px;\n}\n\n.LittleToast-container--topLeft {\n  top: 8px;\n  left: 8px;\n}\n\n.LittleToast-container--bottomRight {\n  bottom: 8px;\n  right: 8px;\n}\n\n.LittleToast-container--bottomLeft {\n  bottom: 8px;\n  left: 8px;\n}\n\n.LittleToast-container--top {\n  top: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n.LittleToast-container--bottom {\n  bottom: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n/* THE ACTUAL TOAST */\n.LittleToast {\n  position: relative;\n  overflow: hidden;\n  margin-top: 8px;\n  width: 280px;\n  height: 50px;\n  padding: 16px 16px 16px 16px;\n  border-radius: 4px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);\n  cursor: pointer;\n}\n\n.LittleToast__close-button {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  color: white;\n}\n\n/* VARIANTS */\n.LittleToast-variant--default {\n  background: white;\n  color: #444;\n}\n\n.LittleToast-variant--primary {\n  background: blueviolet;\n  color: white;\n}\n\n.LittleToast-variant--danger {\n  background: indianred;\n  color: white;\n}\n\n.LittleToast-variant--success {\n  background: greenyellow;\n}\n\n/* Animations */\n.LittleToast--visible {\n  animation: fadeIn 500ms forwards;\n}\n\n.LittleToast--hidden {\n  animation: fadeOut 500ms forwards;\n}\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadeOut {\n  0% {\n    opacity: 1;\n  }\n  80% {\n    opacity: 0.5;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n  90% {\n    opacity: 0.1;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n  100% {\n    opacity: 0;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n}");
+___$insertStyle("/* VARIABLES */\n/* TOAST CONTAINERS */\n.Fantoastic-container {\n  position: fixed;\n  z-index: 9999;\n  max-width: 640px;\n}\n\n.Fantoastic-container--topRight {\n  top: 8px;\n  right: 8px;\n}\n\n.Fantoastic-container--topLeft {\n  top: 8px;\n  left: 8px;\n}\n\n.Fantoastic-container--bottomRight {\n  bottom: 8px;\n  right: 8px;\n}\n\n.Fantoastic-container--bottomLeft {\n  bottom: 8px;\n  left: 8px;\n}\n\n.Fantoastic-container--top {\n  top: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n.Fantoastic-container--bottom {\n  bottom: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n/* THE ACTUAL TOAST */\n.Fantoastic {\n  position: relative;\n  overflow: hidden;\n  margin-top: 8px;\n  padding: 16px 12px;\n  border-radius: 4px;\n  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);\n}\n\n/* VARIANTS */\n.Fantoastic-variant--default {\n  background-color: white;\n  border-left: 8px solid white;\n}\n\n.Fantoastic-variant--primary {\n  background-color: white;\n  border-left: 8px solid purple;\n}\n\n.Fantoastic-variant--success {\n  background-color: white;\n  border-left: 8px solid green;\n}\n\n.Fantoastic-variant--danger {\n  background-color: white;\n  border-left: 8px solid red;\n}\n\n/* Animations */\n.Fantoastic--visible {\n  animation: fadeIn 500ms forwards;\n}\n\n.Fantoastic--hidden {\n  animation: fadeOut 500ms forwards;\n}\n\n/* BODY */\n.Fantoastic-body {\n  display: flex;\n  align-items: center;\n}\n\n.Fantoastic__content-wrapper {\n  padding-right: 24px;\n}\n\n.Fantoastic__closeIcon-wrapper {\n  position: absolute;\n  top: 4px;\n  right: 2px;\n  cursor: pointer;\n}\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadeOut {\n  0% {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0;\n    height: 0;\n    transform: translateY(-20px);\n    color: rgba(255, 255, 255, 0);\n  }\n  100% {\n    opacity: 0;\n    height: 0px;\n    padding-top: 0px;\n    padding-bottom: 0px;\n    margin-top: 0px;\n  }\n}\n/* MISCELLEANOUS */\n.Fantoastic__closeIcon {\n  position: relative;\n  margin-left: 16px;\n  padding: 4px;\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  overflow: hidden;\n  transition: all 100ms ease-in;\n}\n.Fantoastic__closeIcon:hover {\n  background: rgba(0, 0, 0, 0.1);\n}\n.Fantoastic__closeIcon::before, .Fantoastic__closeIcon::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  right: 7px;\n  height: 2px;\n  width: 45%;\n  margin-top: -1px;\n  background: #505050;\n  transition: all 150ms ease-out;\n}\n.Fantoastic__closeIcon::before {\n  transform: rotate(45deg);\n}\n.Fantoastic__closeIcon::after {\n  transform: rotate(-45deg);\n}\n.Fantoastic__closeIcon.Fantoastic__closeIcon--rounded::before, .Fantoastic__closeIcon.Fantoastic__closeIcon--rounded::after {\n  border-radius: 5px;\n}");
 
-var ToastContainer = function (props) { return (React.createElement("div", __assign({ className: classnames("LittleToast-container", "LittleToast-container--" + props.position, {}) }, props))); };
+var DEFAULTS = {
+    duration: 5000,
+    variant: 'default',
+    position: 'topRight',
+};
+var ToastContainer = function (props) { return (React.createElement("div", __assign({ className: classnames("Fantoastic-container", "Fantoastic-container--" + props.position) }, props))); };
 function withToastProvider(Component) {
     function WithToastProvider(props) {
         var _a = useState({
@@ -212,42 +226,43 @@ function withToastProvider(Component) {
             if (options.persist) {
                 return 0;
             }
-            return options.duration ? options.duration : 6000; // TODO: Add default duration as a constant somewhere
+            return options.duration ? options.duration : DEFAULTS.duration;
         };
-        var add = function (textContent, options) {
+        var add = function (content, options) {
             var _a;
             if (options === void 0) { options = {}; }
-            console.log(' add @ withToastProvider: ', textContent);
-            var position = options.position ? options.position : 'topRight';
+            var position = options.position ? options.position : DEFAULTS.position;
+            var variant = options.variant ? options.variant : DEFAULTS.variant;
             var duration = getDuration(options);
             var id = position + ':' + getUuid();
             var newToast = {
                 id: id,
-                textContent: textContent,
-                options: __assign({ duration: duration }, options)
+                content: content,
+                options: __assign(__assign({}, options), { duration: duration,
+                    variant: variant })
             };
-            console.log('newToast: ', newToast);
             setToasts(__assign(__assign({}, toasts), (_a = {}, _a[position] = __spreadArrays(toasts[position], [newToast]), _a)));
         };
         var remove = function (id) {
             var _a;
-            console.log('Removing: ', id);
             var position = id.split(':')[0];
-            var newToasts = toasts[position].filter(function (t) { return t.id !== id; });
-            setToasts(__assign(__assign({}, toasts), (_a = {}, _a[position] = newToasts, _a)));
+            var remainingToasts = toasts[position].filter(function (t) { return t.id !== id; });
+            setToasts(__assign(__assign({}, toasts), (_a = {}, _a[position] = remainingToasts, _a)));
         };
         return (React.createElement(ToastContext.Provider, { value: { add: add, remove: remove } },
             React.createElement(Component, __assign({}, props)),
             createPortal(React.createElement(React.Fragment, null, TOAST_POSITIONS.map(function (position) {
-                return React.createElement(ToastContainer, { key: position, position: position }, toasts[position].map(function (t) { return (React.createElement(Toast, { key: t.id, variant: t.options.variant, duration: t.options.duration, remove: function () { return remove(t.id); } }, t.textContent + ": " + t.id)); }));
+                return React.createElement(ToastContainer, { key: position, position: position }, toasts[position].map(function (t) { return (React.createElement(Toast, { key: t.id, variant: t.options.variant, duration: t.options.duration, withCloseIcon: t.options.withCloseIcon, remove: function () { return remove(t.id); } }, t.content)); }));
             })), document.body)));
     }
     return WithToastProvider;
 }
+//# sourceMappingURL=ToastProvider.js.map
 
 function useToast() {
     var context = useContext(ToastContext);
     return { add: context.add, remove: context.remove };
 }
+//# sourceMappingURL=useToast.js.map
 
 export { TestComponent, useToast, withToastProvider };

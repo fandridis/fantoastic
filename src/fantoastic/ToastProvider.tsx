@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { getUuid } from "./helpers";
@@ -6,6 +6,12 @@ import ToastContext from "./context";
 import ToastComponent from "./Toast";
 import { Toast, ToastOptions, TOAST_POSITIONS } from './types';
 import "./toast.scss";
+
+const DEFAULTS = {
+  duration: 5000,
+  variant: 'default',
+  position: 'topRight',
+}
 
 interface ToastState {
   topLeft: Toast[],
@@ -19,9 +25,8 @@ interface ToastState {
 const ToastContainer = (props: any) => (
   <div
     className={classnames(
-      "LittleToast-container",
-      `LittleToast-container--${props.position}`,
-      {}
+      "Fantoastic-container",
+      `Fantoastic-container--${props.position}`
     )}
     {...props}
   />
@@ -43,24 +48,24 @@ function withToastProvider(Component: any) {
         return 0;
       }
 
-      return options.duration ? options.duration : 6000; // TODO: Add default duration as a constant somewhere
+      return options.duration ? options.duration : DEFAULTS.duration;
     }
 
-    const add = (textContent: string, options: ToastOptions = {}) => {
-
-      console.log(' add @ withToastProvider: ', textContent);
-
-      const position = options.position ? options.position : 'topRight';
+    const add = (content: ReactNode, options: ToastOptions = {}) => {
+      const position = options.position ? options.position : DEFAULTS.position;
+      const variant = options.variant ? options.variant : DEFAULTS.variant;
       const duration = getDuration(options);
       const id = position + ':' + getUuid();
 
       const newToast: Toast = {
         id,
-        textContent,
-        options: { duration, ...options }
+        content,
+        options: {
+          ...options,
+          duration,
+          variant,
+        }
       }
-
-      console.log('newToast: ', newToast);
 
       setToasts({
         ...toasts,
@@ -69,12 +74,10 @@ function withToastProvider(Component: any) {
     };
 
     const remove = (id: string) => {
-      console.log('Removing: ', id);
       const position = id.split(':')[0];
+      const remainingToasts = toasts[position].filter((t: Toast) => t.id !== id);
 
-      const newToasts = toasts[position].filter((t: Toast) => t.id !== id);
-
-      setToasts({ ...toasts, [position]: newToasts });
+      setToasts({ ...toasts, [position]: remainingToasts });
     };
 
     return (
@@ -89,9 +92,10 @@ function withToastProvider(Component: any) {
                     key={t.id}
                     variant={t.options.variant}
                     duration={t.options.duration}
+                    withCloseIcon={t.options.withCloseIcon}
                     remove={() => remove(t.id)}
                   >
-                    {t.textContent + ": " + t.id}
+                    {t.content}
                   </ToastComponent>
                 ))}
               </ToastContainer>

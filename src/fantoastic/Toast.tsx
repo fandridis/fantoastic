@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ReactNode } from "react";
 import classnames from "classnames";
 
 interface ToastProps {
-  children: string; // TODO: Think of making a node
+  children: ReactNode;
   variant: string;
   duration: number;
-  remove: any // () => void;
-  // remove: ({ type }: { type: string }) => void;
+  withCloseIcon?: boolean;
+  remove: (id: string) => void
 }
 
 interface TimerProps {
@@ -33,10 +33,8 @@ const Timer = function (this: any, callback: any, delay: any) {
   this.resume();
 };
 
-// TODO: Introduce prop-types and add types and default values
 function Toast(this: any, props: ToastProps) {
-  const { children, variant = 'default', duration, remove } = props;
-
+  const { children, variant, duration, withCloseIcon, remove } = props;
   const [show, setShow] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timer, setTimer] = useState<TimerProps>();
@@ -62,12 +60,6 @@ function Toast(this: any, props: ToastProps) {
     setShow(false);
   };
 
-  const onAnimationEnd = () => {
-    if (!show) {
-      removeRef.current();
-    }
-  };
-
   const onMouseOver = () => {
     if (isPaused || !timer) {
       return;
@@ -88,25 +80,40 @@ function Toast(this: any, props: ToastProps) {
     setIsPaused(false);
   };
 
+  const onAnimationEnd = () => {
+    if (!show) {
+      removeRef.current();
+    }
+  };
+
   const wrapperClasses = classnames(
     `
-    LittleToast
-    LittleToast-variant--${variant}
+    Fantoastic
+    Fantoastic-variant--${variant}
   `,
     {
-      "LittleToast--visible": show,
-      "LittleToast--hidden": !show
+      "Fantoastic--visible": show,
+      "Fantoastic--hidden": !show
     }
   );
+
   return (
     <div
       className={wrapperClasses}
-      onClick={setToRemove}
       onAnimationEnd={onAnimationEnd}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
     >
-      <div className="LittleToast__text">{children}</div>
+      <div className="Fantoastic-body">
+        <div className="Fantoastic__content-wrapper">
+          <div className="Fantoastic__content">{children}</div>
+        </div>
+        {withCloseIcon &&
+          <div className="Fantoastic__closeIcon-wrapper" onClick={setToRemove}>
+            <div className="Fantoastic__closeIcon Fantoastic__closeIcon--rounded"></div>
+          </div>
+        }
+      </div>
     </div>
   );
 }

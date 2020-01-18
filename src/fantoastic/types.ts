@@ -6,11 +6,12 @@ export interface ToastOptions {
   position?: ToastPositions,
   variant?: string,
   duration?: number,
-  persist?: boolean
+  persist?: boolean,
+  withCloseIcon?: boolean
 }
 
 export interface Toast {
   id: string,
-  textContent: string, // TODO: Maybe make it a node or a component
+  content: React.ReactNode,
   options: ToastOptions
 }

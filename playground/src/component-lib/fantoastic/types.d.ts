@@ -1,3 +1,4 @@
+/// <reference types="react" />
 export declare const TOAST_POSITIONS: readonly ["topLeft", "topRight", "bottomLeft", "bottomRight", "top", "bottom"];
 export declare type ToastPositions = typeof TOAST_POSITIONS[number];
 export interface ToastOptions {
@@ -5,9 +6,10 @@ export interface ToastOptions {
     variant?: string;
     duration?: number;
     persist?: boolean;
+    withCloseIcon?: boolean;
 }
 export interface Toast {
     id: string;
-    textContent: string;
+    content: React.ReactNode;
     options: ToastOptions;
 }

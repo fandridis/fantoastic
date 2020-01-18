@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseIcon:  When withCloseIcon is not set,  should not render a closeIcon element 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--default
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CloseIcon:  When withCloseIcon is set,  should render a closeIcon element 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--default
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+    <div
+      className="Fantoastic__closeIcon-wrapper"
+      onClick={[Function]}
+    >
+      <div
+        className="Fantoastic__closeIcon Fantoastic__closeIcon--rounded"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Variants:  When render a danger toast,  it should have the correct classes 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--danger
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Variants:  When render a default toast,  it should have the correct classes 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--default
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Variants:  When render a primary toast,  it should have the correct classes 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--primary
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Variants:  When render a success toast,  it should have the correct classes 1`] = `
+<div
+  className="
+    Fantoastic
+    Fantoastic-variant--success
+   Fantoastic--visible"
+  onAnimationEnd={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="Fantoastic-body"
+  >
+    <div
+      className="Fantoastic__content-wrapper"
+    >
+      <div
+        className="Fantoastic__content"
+      >
+        This is a fantastic toast!
+      </div>
+    </div>
+  </div>
+</div>
+`;
