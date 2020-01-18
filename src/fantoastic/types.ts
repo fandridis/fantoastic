@@ -12,6 +12,6 @@ export interface ToastOptions {
 
 export interface Toast {
   id: string,
-  content: React.ReactNode, // TODO: Maybe make it a node or a component
+  content: React.ReactNode,
   options: ToastOptions
 }

@@ -10,7 +10,7 @@ exports[`Test Component Snapshots should match snapshots as primary themed 1`] =
     I'm the test component
   </h1>
   <h2>
-    Made with love by Harvey
+    This is some text.
   </h2>
 </div>
 `;
@@ -25,7 +25,7 @@ exports[`Test Component Snapshots should match snapshots as secondary themed 1`]
     I'm the test component
   </h1>
   <h2>
-    Made with love by Harvey
+    This is some text.
   </h2>
 </div>
 `;

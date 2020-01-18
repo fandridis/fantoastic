@@ -5,7 +5,7 @@ interface ToastProps {
   children: ReactNode;
   variant: string;
   duration: number;
-  withCloseIcon: boolean;
+  withCloseIcon?: boolean;
   remove: (id: string) => void
 }
 
