@@ -1,9 +1,10 @@
-/// <reference types="react" />
+import { ReactNode } from "react";
 interface ToastProps {
-    children: string;
+    children: ReactNode;
     variant: string;
     duration: number;
-    remove: any;
+    withCloseIcon: boolean;
+    remove: (id: string) => void;
 }
 declare function Toast(this: any, props: ToastProps): JSX.Element;
 export default Toast;

@@ -1,29 +1,44 @@
-.LittleToast-container {
+/* VARIABLES */
+$FantoasticBackgroundColorDefault: white;
+$FantoasticBackgroundColorPrimary: white;
+$FantoasticBackgroundColorSuccess: white;
+$FantoasticBackgroundColorDanger: white;
+
+$FantoasticBorderColorDefault: white;
+$FantoasticBorderColorPrimary: purple;
+$FantoasticBorderColorSuccess: green;
+$FantoasticBorderColorDanger: red;
+
+$FantoasticContainerMaxWidth: 640px;
+
+/* TOAST CONTAINERS */
+.Fantoastic-container {
     position: fixed;
     z-index: 9999;
+    max-width: $FantoasticContainerMaxWidth;
 }
   
-.LittleToast-container--topRight {
+.Fantoastic-container--topRight {
   top: 8px;
   right: 8px;
 }
 
-.LittleToast-container--topLeft {
+.Fantoastic-container--topLeft {
   top: 8px;
   left: 8px;
 }
 
-.LittleToast-container--bottomRight {
+.Fantoastic-container--bottomRight {
   bottom: 8px;
   right: 8px;
 }
 
-.LittleToast-container--bottomLeft {
+.Fantoastic-container--bottomLeft {
   bottom: 8px;
   left: 8px;
 }
 
-.LittleToast-container--top {
+.Fantoastic-container--top {
   top: 8px;
   left: 50%;
   width: auto;
@@ -34,7 +49,7 @@
   transform: translateX(-50%);
 }
 
-.LittleToast-container--bottom {
+.Fantoastic-container--bottom {
   bottom: 8px;
   left: 50%;
   width: auto;
@@ -46,49 +61,57 @@
 }
 
 /* THE ACTUAL TOAST */
-.LittleToast {
+.Fantoastic {
   position: relative;
   overflow: hidden;
   margin-top: 8px;
-  width: 280px;
-  height: 50px;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 12px;
   border-radius: 4px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-
-.LittleToast__close-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  color: white;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* VARIANTS */
-.LittleToast-variant--default {
-  background: white;
-  color: #444;
+.Fantoastic-variant--default {
+  background-color: $FantoasticBackgroundColorDefault;
+  border-left: 8px solid $FantoasticBorderColorDefault;
 }
-.LittleToast-variant--primary {
-  background: blueviolet;
-  color: white;
+.Fantoastic-variant--primary {
+  background-color: $FantoasticBackgroundColorPrimary;
+  border-left: 8px solid $FantoasticBorderColorPrimary;
 }
-.LittleToast-variant--danger {
-  background: indianred;
-  color: white;
+.Fantoastic-variant--success {
+  background-color: $FantoasticBackgroundColorSuccess;
+  border-left: 8px solid $FantoasticBorderColorSuccess;
 }
-.LittleToast-variant--success {
-  background: greenyellow;
+.Fantoastic-variant--danger {
+  background-color: $FantoasticBackgroundColorDanger;
+  border-left: 8px solid $FantoasticBorderColorDanger;
 }
 
 /* Animations */
-.LittleToast--visible {
+.Fantoastic--visible {
   animation: fadeIn 500ms forwards;
 }
 
-.LittleToast--hidden {
+.Fantoastic--hidden {
   animation: fadeOut 500ms forwards;
+}
+
+/* BODY */
+.Fantoastic-body {
+  display: flex;
+  align-items: center;
+}
+
+.Fantoastic__content-wrapper {
+  padding-right: 24px;
+}
+
+.Fantoastic__closeIcon-wrapper {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -105,21 +128,24 @@
     opacity: 1;
   }
 
-  80% {
-    opacity: 0.5;
-    height: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
+  50% {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-20px);
+    color: rgba(255, 255, 255, 0);
+    // height: 0px;
+    // padding-top: 0px;
+    // padding-bottom: 0px;
+    // margin-top: 0px;
   }
 
-  90% {
-    opacity: 0.1;
-    height: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-  }
+  // 90% {
+  //   opacity: 0.1;
+  //   // height: 0px;
+  //   // padding-top: 0px;
+  //   // padding-bottom: 0px;
+  //   // margin-top: 0px;
+  // }
 
   100% {
     opacity: 0;
@@ -129,3 +155,48 @@
     margin-top: 0px;
   }
 }
+
+
+
+/* MISCELLEANOUS */
+
+// Close Icon
+.Fantoastic__closeIcon{
+  position: relative;
+  margin-left: 16px;
+  padding: 4px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 100ms ease-in;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    height: 2px;
+    width: 45%;
+    margin-top: -1px;
+    background: rgb(80, 80, 80);
+    transition: all 150ms ease-out;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &.Fantoastic__closeIcon--rounded {
+    &::before, &::after {
+      border-radius: 5px;
+    }
+  }
+}
+

@@ -6,34 +6,46 @@ const App: React.FC = () => {
   const toast = useToast();
 
   const handleCreateToast1 = () => {
-    toast.add('This is the simplest of the toasts');
+    toast.add('The simplest of the toasts.');
   };
 
+  const handleClick = (e: any, data: any) => {
+    e.stopPropagation();
+    alert(data);
+  }
+
   const handleCreateToast2 = () => {
-    toast.add("A primary toast is here", { variant: "primary", position: 'topLeft' });
+    toast.add("A primary toast is here.", { variant: "primary", position: 'topLeft' });
   };
 
   const handleCreateToast3 = () => {
-    toast.add("A danger toast is here", {
+    toast.add("A danger toast is here with a weirdly long message. Consider adding a larger duration so the user has a chance to read the entire message.", {
       variant: "danger",
-      position: "top"
+      position: "top",
     });
   };
 
   const handleCreateToast4 = () => {
-    toast.add("This toast will close swiftly!", {
-      variant: "primary",
+    toast.add("This toast will persist until closed manually!", {
+      variant: "success",
       position: 'bottomRight',
-      duration: 1000
+      persist: true,
+      withCloseIcon: true
     });
   };
 
   const handleCreateToast5 = () => {
-    toast.add("This toast will persist!", {
-      variant: "danger",
-      position: 'bottom',
-      persist: true
-    });
+    const secret = 'There is no spoon.';
+
+    const content = (
+      <div>
+        <h3>TITLE GOES HERE</h3>
+        <p>You can even add HTML as the content of the toast!</p>
+        <button onClick={(e) => handleClick(e, secret)}>Click me</button>
+      </div>
+    );
+
+    toast.add(content, { persist: true, withCloseIcon: true });
   };
 
   return (
@@ -43,8 +55,8 @@ const App: React.FC = () => {
         <button onClick={handleCreateToast1}>Default toast</button>
         <button onClick={handleCreateToast2}>Primary toast top-left</button>
         <button onClick={handleCreateToast3}>Danger toast top</button>
-        <button onClick={handleCreateToast4}>Short-duration toast bottom-right</button>
-        <button onClick={handleCreateToast5}>Persisting toast bottom</button>
+        <button onClick={handleCreateToast4}>Persisting toast bottom-right</button>
+        <button onClick={handleCreateToast5}>HTML toast</button>
       </header>
     </div >
   );
