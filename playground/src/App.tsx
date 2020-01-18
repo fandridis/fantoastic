@@ -39,7 +39,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hello from Fantoastic</h1>
+        <h1>This is fantoastic!</h1>
         <button onClick={handleCreateToast1}>Default toast</button>
         <button onClick={handleCreateToast2}>Primary toast top-left</button>
         <button onClick={handleCreateToast3}>Danger toast top</button>
