@@ -1,6 +1,6 @@
 {
   "name": "fantoastic",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
