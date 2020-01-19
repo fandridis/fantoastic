@@ -4,13 +4,13 @@ import { createPortal } from "react-dom";
 import { getUuid } from "./helpers";
 import ToastContext from "./context";
 import ToastComponent from "./Toast";
-import { Toast, ToastOptions, TOAST_POSITIONS } from './types';
+import { Toast, ToastOptions, TOAST_POSITIONS, TOAST_VARIANTS } from './types';
 import "./toast.scss";
 
 const DEFAULTS = {
   duration: 5000,
-  variant: 'default',
-  position: 'topRight',
+  variant: TOAST_VARIANTS[0],
+  position: TOAST_POSITIONS[0],
 }
 
 interface ToastState {

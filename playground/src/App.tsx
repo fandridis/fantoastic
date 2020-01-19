@@ -1,64 +1,131 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useToast, withToastProvider } from './component-lib';
+import { Checkbox, Select, Slider } from 'antd';
+import PositionSelector from './components/PositionSelector/PositionSelector';
+import { ToastOptions } from './types';
+import 'antd/dist/antd.css';
 import './App.css';
 
+const { Option } = Select;
+
 const App: React.FC = () => {
+  const [toastProps, setToastProps] = useState<ToastOptions>({
+    position: 'topRight',
+    variant: 'default',
+    duration: 5000,
+    persist: false,
+    withCloseIcon: false
+  });
   const toast = useToast();
 
-  const handleCreateToast1 = () => {
-    toast.add('The simplest of the toasts.');
-  };
-
-  const handleClick = (e: any, data: any) => {
-    e.stopPropagation();
-    alert(data);
+  const handleTogglePersistance = (e: any) => {
+    setToastProps({ ...toastProps, persist: e.target.checked })
   }
 
-  const handleCreateToast2 = () => {
-    toast.add("A primary toast is here.", { variant: "primary", position: 'topLeft' });
-  };
+  const handleToggleShowIcon = (e: any) => {
+    setToastProps({ ...toastProps, withCloseIcon: e.target.checked })
+  }
 
-  const handleCreateToast3 = () => {
-    toast.add("A danger toast is here with a weirdly long message. Consider adding a larger duration so the user has a chance to read the entire message.", {
-      variant: "danger",
-      position: "top",
+  const handleSelectVariant = (val: ToastOptions['variant']) => {
+    setToastProps({ ...toastProps, variant: val })
+  }
+
+  const handleSelectPosition = (val: ToastOptions['position']) => {
+    setToastProps({ ...toastProps, position: val })
+  }
+
+  const handleChangeDuration = (val: any) => {
+    setToastProps({ ...toastProps, duration: val * 1000 })
+  }
+
+  const handleCreateToast = () => {
+    toast.add("This is one fantastic toast!", {
+      ...toastProps
     });
-  };
-
-  const handleCreateToast4 = () => {
-    toast.add("This toast will persist until closed manually!", {
-      variant: "success",
-      position: 'bottomRight',
-      persist: true,
-      withCloseIcon: true
-    });
-  };
-
-  const handleCreateToast5 = () => {
-    const secret = 'There is no spoon.';
-
-    const content = (
-      <div>
-        <h3>TITLE GOES HERE</h3>
-        <p>You can even add HTML as the content of the toast!</p>
-        <button onClick={(e) => handleClick(e, secret)}>Click me</button>
-      </div>
-    );
-
-    toast.add(content, { persist: true, withCloseIcon: true });
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>This is fantoastic!</h1>
-        <button onClick={handleCreateToast1}>Default toast</button>
-        <button onClick={handleCreateToast2}>Primary toast top-left</button>
-        <button onClick={handleCreateToast3}>Danger toast top</button>
-        <button onClick={handleCreateToast4}>Persisting toast bottom-right</button>
-        <button onClick={handleCreateToast5}>HTML toast</button>
+        <h1>This is <span className="logo-whole"> fan<span className="logo-toast">toast</span>ic!</span></h1>
+        <p>• A React library for all your toasting needs •</p>
       </header>
-    </div >
+
+      <h2>Let's create the most fantastic toast!</h2>
+
+      {/* Choose a variant */}
+      <div className="configuration-container">
+        <div className="configuration-label-wrapper">
+          <p>Firstly, choose a variant:</p>
+        </div>
+
+        <div className="configuration-input-wrapper">
+          <Select defaultValue="default" style={{ width: 120 }} onChange={handleSelectVariant}>
+            <Option value="primary">Primary</Option>
+            <Option value="success">Success</Option>
+            <Option value="danger">Danger</Option>
+          </Select>
+        </div>
+      </div>
+
+      {/* Choose a position */}
+      <div className="configuration-container">
+        <div className="configuration-label-wrapper">
+          <p>Where should we render it:</p>
+        </div>
+
+        <div className="configuration-input-wrapper">
+          <PositionSelector selectedPosition={toastProps.position} onSelectPosition={handleSelectPosition} />
+        </div>
+      </div>
+
+      <div className="configuration-container">
+        <div className="configuration-label-wrapper">
+          <p>For how many seconds should it stay visible?</p>
+        </div>
+
+        <div className="configuration-input-wrapper">
+          <Slider
+            min={1}
+            max={20}
+            value={toastProps.duration ? toastProps.duration / 1000 : 5000}
+            onChange={handleChangeDuration}
+          />
+        </div>
+      </div>
+
+      <div className="configuration-container">
+        <div className="configuration-label-wrapper">
+          <p>What about having a close icon?</p>
+        </div>
+
+        <div className="configuration-input-wrapper">
+          <Checkbox
+            onChange={handleToggleShowIcon}
+            checked={toastProps.withCloseIcon}
+          >
+            Yes, with a close icon please.
+          </Checkbox>
+        </div>
+      </div>
+
+      <div className="configuration-container">
+        <div className="configuration-label-wrapper">
+          <p>Lastly, should it persist:</p>
+        </div>
+
+        <div className="configuration-input-wrapper">
+          <Checkbox
+            onChange={handleTogglePersistance}
+            checked={toastProps.persist}
+          >
+            Yes, persist it is.
+          </Checkbox>
+        </div>
+      </div>
+
+      <button onClick={handleCreateToast}>Create toast</button>
+    </div>
   );
 }
 
