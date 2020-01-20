@@ -2,11 +2,8 @@
 
 A fantastic library for all your toast needs.
 
-<br />
-
 ### Live Preview: https://fantoastic.netlify.com/
 
-<br />
 <br />
 
 ## Getting started
