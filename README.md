@@ -2,6 +2,13 @@
 
 A fantastic library for all your toast needs.
 
+<br />
+
+### Live Preview: https://fantoastic.netlify.com/
+
+<br />
+<br />
+
 ## Getting started
 
 ### 1. Install the library (React >= 16.8.0 is required)
