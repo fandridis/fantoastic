@@ -18,16 +18,6 @@ function ___$insertStyle(css) {
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 
-___$insertStyle(".test-component {\n  background-color: white;\n  border: 1px solid black;\n  padding: 16px;\n  width: 360px;\n  text-align: center;\n}\n.test-component .heading {\n  font-size: 64px;\n}\n.test-component.test-component-secondary {\n  background-color: black;\n  color: white;\n}");
-
-var TestComponent = function (_a) {
-    var theme = _a.theme;
-    return (React.createElement("div", { className: "test-component test-component-" + theme },
-        React.createElement("h1", { className: "heading" }, "I'm the test component"),
-        React.createElement("h2", null, "This is some text.")));
-};
-//# sourceMappingURL=test-component.js.map
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -125,13 +115,11 @@ function getUuid() {
     }
     return uuid(null, null);
 }
-//# sourceMappingURL=helpers.js.map
 
 var ToastContext = React.createContext({
     add: function (content, options) { return null; },
     remove: function (id) { return null; }
 });
-//# sourceMappingURL=context.js.map
 
 var Timer = function (callback, delay) {
     var timerId;
@@ -199,11 +187,9 @@ function Toast(props) {
                 React.createElement("div", { className: "Fantoastic__closeIcon-wrapper", onClick: setToRemove },
                     React.createElement("div", { className: "Fantoastic__closeIcon Fantoastic__closeIcon--rounded" })))));
 }
-//# sourceMappingURL=Toast.js.map
 
 var TOAST_POSITIONS = ['topRight', 'topLeft', 'bottomRight', 'bottomLeft', 'top', 'bottom'];
 var TOAST_VARIANTS = ['default', 'primary', 'success', 'danger'];
-//# sourceMappingURL=types.js.map
 
 ___$insertStyle("/* VARIABLES */\n/* TOAST CONTAINERS */\n.Fantoastic-container {\n  position: fixed;\n  z-index: 9999;\n  max-width: 640px;\n}\n\n.Fantoastic-container--topRight {\n  top: 8px;\n  right: 8px;\n}\n\n.Fantoastic-container--topLeft {\n  top: 8px;\n  left: 8px;\n}\n\n.Fantoastic-container--bottomRight {\n  bottom: 8px;\n  right: 8px;\n}\n\n.Fantoastic-container--bottomLeft {\n  bottom: 8px;\n  left: 8px;\n}\n\n.Fantoastic-container--top {\n  top: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n.Fantoastic-container--bottom {\n  bottom: 8px;\n  left: 50%;\n  width: auto;\n  -webkit-transform: translateX(-50%);\n  -moz-transform: translateX(-50%);\n  -ms-transform: translateX(-50%);\n  -o-transform: translateX(-50%);\n  transform: translateX(-50%);\n}\n\n/* THE ACTUAL TOAST */\n.Fantoastic {\n  position: relative;\n  overflow: hidden;\n  margin-top: 8px;\n  padding: 16px 12px;\n  border-radius: 4px;\n  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);\n}\n\n/* VARIANTS */\n.Fantoastic-variant--default {\n  background-color: white;\n  border-left: 8px solid white;\n}\n\n.Fantoastic-variant--primary {\n  background-color: white;\n  border-left: 8px solid purple;\n}\n\n.Fantoastic-variant--success {\n  background-color: white;\n  border-left: 8px solid green;\n}\n\n.Fantoastic-variant--danger {\n  background-color: white;\n  border-left: 8px solid red;\n}\n\n/* ANIMATIONS */\n.Fantoastic--visible {\n  animation: fadeIn 500ms forwards;\n}\n\n.Fantoastic--hidden {\n  animation: fadeOut 1000ms forwards;\n}\n\n/* BODY */\n.Fantoastic-body {\n  display: flex;\n  align-items: center;\n}\n\n.Fantoastic__content-wrapper {\n  padding-right: 24px;\n}\n\n.Fantoastic__closeIcon-wrapper {\n  position: absolute;\n  top: 4px;\n  right: 6px;\n  cursor: pointer;\n}\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadeOut {\n  0% {\n    opacity: 1;\n  }\n  30% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 0;\n    padding: 0;\n    margin-top: 0;\n    height: 0px;\n  }\n}\n.Fantoastic__closeIcon {\n  position: relative;\n  display: inline-block;\n  width: 12px;\n  height: 12px;\n  overflow: hidden;\n}\n.Fantoastic__closeIcon::before, .Fantoastic__closeIcon::after {\n  content: \"\";\n  position: absolute;\n  height: 2px;\n  width: 100%;\n  top: 50%;\n  left: 0;\n  margin-top: -1px;\n  background: grey;\n  transition: all 100ms ease-in;\n}\n.Fantoastic__closeIcon::before {\n  transform: rotate(45deg);\n}\n.Fantoastic__closeIcon::after {\n  transform: rotate(-45deg);\n}\n.Fantoastic__closeIcon.hairline::before, .Fantoastic__closeIcon.hairline::after {\n  height: 1px;\n}\n.Fantoastic__closeIcon:hover::before, .Fantoastic__closeIcon:hover::after {\n  background: black;\n}");
 
@@ -258,12 +244,10 @@ function withToastProvider(Component) {
     }
     return WithToastProvider;
 }
-//# sourceMappingURL=ToastProvider.js.map
 
 function useToast() {
     var context = useContext(ToastContext);
     return { add: context.add, remove: context.remove };
 }
-//# sourceMappingURL=useToast.js.map
 
-export { TestComponent, useToast, withToastProvider };
+export { useToast, withToastProvider };
